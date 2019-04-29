@@ -1,0 +1,77 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')
+    title #{name}
+  body
+    h1(align="center") Category: #{name}
+    .container-fluid(style='padding-top:30px')
+      section.row
+        .mx-auto
+          .dropdown
+            .center
+              button#dropdownMenuButton.btn.btn-success.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                | Choose Category
+              .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                a.dropdown-item(href='/SukiyakiShabu') SukiyakiShabu
+                a.dropdown-item(href='/Vegeterian') Vegeterian
+                a.dropdown-item(href='/CaféCoffee_Shop') CaféCoffee_Shop
+                a.dropdown-item(href='/Dessert') Dessert
+                a.dropdown-item(href='/French') French
+                a.dropdown-item(href='/Izakaya') Izakaya
+                a.dropdown-item(href='/Japanese') Japanese
+                a.dropdown-item(href='/Muslim') Muslim
+                a.dropdown-item(href='/Northern_Food') Northern_Food
+                a.dropdown-item(href='/Southern_Food') Southern_Food
+                a.dropdown-item(href='/HouseBarbeque') HouseBarbeque
+      div(style='padding-top:30px')
+        table.table(style='text-align:center;')
+          thead.thead-dark
+            tr
+              th(scope='col') Heatmap Shop
+              th(scope='col') Heatmap Reach
+              th(scope='col') Heatmap Bookmark
+                
+          tbody
+            tr
+              td 
+                iframe(src='/project2_data/heatmap_shop_of_'+name+'.html', style='border: 0; width:90%; height:500px;')
+              td
+                iframe(src='/project2_data/heatmap_reach_of_'+name+'.html', style='border: 0; width:90%; height:500px;')
+              td
+                iframe(src='/project2_data/heatmap_bookmark_of_'+name+'.html', style='border: 0; width:90%; height:500px;')
+          
+        h2(align="center") Top Best Region
+        table.table(style='text-align:center;')
+            thead.thead-dark
+                  tr
+                    each col in top_best[0].split("\t")
+                      th #{col}
+            tbody 
+                each row in top_best.slice(1,6)
+                  tr
+                    each col in row.split("\t")
+                      td #{col}
+    
+        h2(align="center") Top Worst Region
+        table.table(style='text-align:center;')
+            thead.thead-dark
+                  tr
+                    each col in top_worst[0].split("\t")
+                      th #{col}
+            tbody 
+                each row in top_worst.slice(1,6)
+                  tr
+                    each col in row.split("\t")
+                      td #{col}
+  
+              //- each row in top_worst
+              //-   tr  
+              //-     td #{row[0]}
+              //-     td #{row[1]}
+              //-     td #{row[2]}
+              //-     td #{row[3]}
+              //-     td #{row[4]}
