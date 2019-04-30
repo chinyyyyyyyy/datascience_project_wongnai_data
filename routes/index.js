@@ -3,7 +3,7 @@ var router = express.Router();
 var fs = require('fs')
 
 /* GET home page. */
-router.get('/:id', function(req, res, next) {
+router.get('/cat/:id', function(req, res, next) {
   id  = req.params.id;
   fs.readFile("./public/project2_data/top_best_of_"+id,'utf8', function(err, data) {
     if (err) throw err;
